@@ -3,6 +3,10 @@
 
 (provide build-extension)
 
+(require racket/file
+         dynext/compile
+         dynext/link)
+
 
 ;; A small helper to make it easier to build extension libraries.  The
 ;; design is meant to mimic the extension-building part of Python's
@@ -18,10 +22,20 @@
 ;; Write out the dynamic library.
 (define (build-extension base-name
                          #:sources (sources '())
+                         #:dest-dir (dest-dir 
+                                     (build-path (current-directory) "lib"))
                          ;;#:define-macros (define-macros '())
-                         ;;#:include-dirs (include-dirs '())
+                         #:include-dirs (include-dirs '())
                          ;;#:libraries (libraries '())
                          ;;#:library-dirs (library-dirs '())
                          )
-  (void))
+  (make-directory* dest-dir)
+  (define tmpdir (make-temporary-file "tmp~a" 'directory dest-dir))
 
+  (for ([file sources])
+    (compile-extension #t
+                       file 
+                       (build-path tmpdir (path-replace-suffix file ".o"))
+                       include-dirs))
+  ;;(delete-directory/files tmpdir)
+  )
