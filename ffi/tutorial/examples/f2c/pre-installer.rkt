@@ -1,4 +1,6 @@
 #lang racket/base
+(provide pre-installer)
+
 (require ffi/tutorial/utils)
 
 (define pre-installer
