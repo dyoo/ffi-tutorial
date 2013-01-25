@@ -4,6 +4,7 @@
          make-pre-installer)
 
 (require racket/file
+         racket/path
          dynext/compile
          dynext/link)
 
@@ -39,7 +40,8 @@
 
   ;; Translate the .c name to the object path.
   (define (c->o file)
-    (build-path tmpdir (path-replace-suffix file ".o")))
+    (build-path tmpdir 
+                (path-replace-suffix (file-name-from-path file) ".o")))
 
   ;; First, build all the C source files.
   (for ([file sources])

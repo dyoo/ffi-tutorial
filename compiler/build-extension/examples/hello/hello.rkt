@@ -6,9 +6,7 @@
 (provide say-hello)
 
 (define-runtime-path hello-library-path
-  (format "~a~a"
-          (build-path "lib" "hello")
-          (system-type 'so-suffix)))
+  (build-path "lib" "hello"))
 
 (define the-lib (ffi-lib hello-library-path))
 
