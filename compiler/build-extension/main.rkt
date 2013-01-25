@@ -15,12 +15,12 @@
 ;; We should automate the work that raco ctool is doing, and make it
 ;; easy to drive from info.rkt.
 
-;; build-extension: [base-name string]
+;; build-extension: [basename string]
 ;;                  [#:sources (listof string)]
 ;;
 ;;                 -> void
 ;; Write out the dynamic library.
-(define (build-extension base-name
+(define (build-extension basename
                          #:sources (sources '())
                          #:dest-dir (dest-dir 
                                      (build-path (current-directory) "lib"))
@@ -28,14 +28,26 @@
                          #:include-dirs (include-dirs '())
                          ;;#:libraries (libraries '())
                          ;;#:library-dirs (library-dirs '())
+                         #:quiet? (quiet? #t)
                          )
   (make-directory* dest-dir)
   (define tmpdir (make-temporary-file "tmp~a" 'directory dest-dir))
 
+
+  ;; Translate the .c name to the object path.
+  (define (c->o file)
+    (build-path tmpdir (path-replace-suffix file ".o")))
+
+  ;; First, build all the C source files.
   (for ([file sources])
-    (compile-extension #t
-                       file 
-                       (build-path tmpdir (path-replace-suffix file ".o"))
-                       include-dirs))
-  ;;(delete-directory/files tmpdir)
-  )
+    (compile-extension quiet? file (c->o file) include-dirs))
+
+  ;; Next, link them all together to a dynamic library.
+  (define dynamic-library 
+    (build-path dest-dir (format "~a~a" basename (system-type 'so-suffix))))
+  (link-extension quiet?
+                  (for/list ([file sources]) (c->o file))
+                  dynamic-library)
+
+  ;; Finally, clean up.
+  (delete-directory/files tmpdir))
