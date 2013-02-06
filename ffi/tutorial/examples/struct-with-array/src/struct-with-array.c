@@ -7,5 +7,5 @@ struct foo {
 
 
 void printFoo(struct foo f) {
-  printf("<struct:foo %d %s>", f.a f.b);
+  printf("<struct:foo %d %s>", f.a, f.b);
 }
