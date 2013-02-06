@@ -9,7 +9,7 @@
   b)
 
 (define my-foo
-  (make-foo 16 (bytes-padded #"This is a byte string" 42)))
+  (make-foo 343 (bytes-padded #"This is a byte string" 42)))
 
 (print-foo my-foo)
 (newline)
