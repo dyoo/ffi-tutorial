@@ -1,5 +1,5 @@
 #lang racket/base
-(require "hello.rkt")
+(require "array-with-struct.rkt")
 
 
 ;; Now we can just call say-hello:

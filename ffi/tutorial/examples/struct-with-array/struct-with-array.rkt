@@ -5,10 +5,13 @@
 
 (provide say-hello)
 
-(define-runtime-path hello-library-path
-  (build-path "lib" "hello"))
+(define-runtime-path the-library-path
+  (build-path "lib" "struct-with-array"))
 
-(define the-lib (ffi-lib hello-library-path))
+(define-cstruct _foo ([a _int]
+                      [b _array _byte 42]))
 
-(define say-hello (get-ffi-obj "sayHello" the-lib
-                               (_fun _string -> _void)))
+(define the-lib (ffi-lib the-library-path))
+
+(define say-hello (get-ffi-obj "printFoo" the-lib
+                               (_fun _foo -> _void)))
