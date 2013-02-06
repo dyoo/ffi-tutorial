@@ -8,11 +8,8 @@
   (bytes-copy! b 0 bstr)
   b)
 
-(define my-foo (make-foo 16 (bytes-padded #"This is a byte string" 42)))
+(define my-foo
+  (make-foo 16 (bytes-padded #"This is a byte string" 42)))
 
-
-(printf "hello world\n")
-(flush-output)
 (print-foo my-foo)
-(flush-output)
-;(newline)
+(newline)
