@@ -15,7 +15,7 @@
 (newline)
 
 
-(printf "The number in the structure is is: ~s\n"
+(printf "The number in the structure is: ~s\n"
         (foo-a my-foo))
 
 
