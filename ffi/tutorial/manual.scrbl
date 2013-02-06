@@ -37,7 +37,9 @@ If you've started with something like HTDP, where Racket has been set to the ...
 
 [The environment]
 
-[Set the language level to professional racket/base]
+[Running racket from the command line]
+
+[Set the language level to professional racket/base with #lang]
 
 [installing the tools from PLaneT2]
 
@@ -105,6 +107,10 @@ crashing and memory leaking.]
 
 
 @section{Bit hackery}
+
+
+@section{Mutable and immutable data}
+[String literals vs arrays]
 
 
 
