@@ -13,3 +13,11 @@
 
 (print-foo my-foo)
 (newline)
+
+
+(printf "The number in the structure is is: ~s\n"
+        (foo-a my-foo))
+
+
+(printf "The byte string inside the structure is: ~s\n"
+        (foo-b my-foo))
