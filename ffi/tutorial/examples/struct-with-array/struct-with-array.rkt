@@ -15,20 +15,22 @@ struct foo {
 };
 |#
 
-(define _bytes/len
-  (case-lambda
-   [(n)
-    (make-ctype (make-array-type _byte n)
-                ;; ->c
-                (lambda (v)
-                  (unless (and (bytes? v) (= (bytes-length v) n))
-                    (raise-argument-error '_chars/bytes 
-                                          (format "bytes of length ~a" n)
-                                          v))
-                  v)
-                ;; ->racket
-                (lambda (v)
-                  (make-sized-byte-string v n)))]))
+
+;; Creates a sized bytes type of length n.
+(define (_bytes/len n)
+  (make-ctype (make-array-type _byte n)
+
+              ;; ->c
+              (lambda (v)
+                (unless (and (bytes? v) (= (bytes-length v) n))
+                  (raise-argument-error '_chars/bytes 
+                                        (format "bytes of length ~a" n)
+                                        v))
+                v)
+
+              ;; ->racket
+              (lambda (v)
+                (make-sized-byte-string v n))))
 
 
 (define-cstruct _foo ([a _int]
@@ -36,5 +38,6 @@ struct foo {
 
 (define the-lib (ffi-lib the-library-path))
 
-(define print-foo (get-ffi-obj "printFoo" the-lib
-                               (_fun _foo -> _void)))
+(define print-foo 
+  (get-ffi-obj "printFoo" the-lib
+               (_fun _foo -> _void)))
