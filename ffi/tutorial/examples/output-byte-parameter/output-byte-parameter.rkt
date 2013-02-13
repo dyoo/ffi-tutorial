@@ -17,7 +17,7 @@
   (get-ffi-obj "iauA2tf" the-lib
                (_fun  (ndp : _int)
                       (angle : _double)
-                      (sign : (_ptr o _int))  ; <====
-                      (idmsf : (_ptr o (_array _int 4)))
+                      (sign : (_ptr o _byte))  ; <====
+                      (idmsf : (_ptr o (_array/vector _int 4)))
                       -> _void
                       -> (values sign idmsf))))

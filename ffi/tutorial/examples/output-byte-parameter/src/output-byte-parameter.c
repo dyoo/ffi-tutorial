@@ -6,5 +6,5 @@ void iauA2tf(int ndp, double angle, char *sign, int ihmsf[4]) {
   ihmsf[0] = 3;
   ihmsf[1] = 1;
   ihmsf[2] = 4;
-  ihmsf[2] = 1;
+  ihmsf[3] = 1;
 }
