@@ -1,0 +1,1 @@
+("5.3.2.3" ("6ff6469b1955eaf9f00550e91b4acb15ffa3eab1" . "f88bdd647f283b14e8d5de7e76230a12b27423ff") #"/Users/dyoo/work/ffi-tutorial/ffi/tutorial/examples/struct-with-array/struct-with-array.rkt" (collects #"racket" #"base.rkt") (collects #"racket" #"base" #"lang" #"reader.rkt"))
