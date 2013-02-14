@@ -3,4 +3,4 @@
 
 
 ;; Now we can just call say-hello:
-(say-hello "Danny")
+(printf "before\n")(say-hello "Danny")(printf "\nafter\n")
