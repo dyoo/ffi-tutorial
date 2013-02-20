@@ -1,6 +1,5 @@
 #lang racket/base
 (require ffi/unsafe
-         ffi/unsafe/cvector
          racket/runtime-path
          (for-syntax racket/base))
 
