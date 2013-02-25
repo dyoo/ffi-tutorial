@@ -2,11 +2,11 @@
 
 struct foo {
   int a;
-  char b[42];
+  void (*printFoo)(struct foo* f);
 };
 
 
-void printFoo(struct foo f) {
-  printf("<struct:foo %d %s>", f.a, f.b);
-  fflush(stdout);
+void printFooTwice(struct foo *f) {
+  f->printFoo(f);
+  f->printFoo(f);
 }

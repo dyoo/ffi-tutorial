@@ -6,38 +6,21 @@
 (provide (except-out (all-defined-out) the-lib the-library-path))
 
 (define-runtime-path the-library-path
-  (build-path "lib" "struct-with-array"))
+  (build-path "lib" "struct-with-callback"))
 
 #|
 struct foo {
   int a;
-  char b[42];
+  void (*printFoo)(struct foo* f);
 };
 |#
 
 
-;; Creates a sized bytes type of length n.
-(define (_bytes/len n)
-  (make-ctype (make-array-type _byte n)
-
-              ;; ->c
-              (lambda (v)
-                (unless (and (bytes? v) (= (bytes-length v) n))
-                  (raise-argument-error '_chars/bytes 
-                                        (format "bytes of length ~a" n)
-                                        v))
-                v)
-
-              ;; ->racket
-              (lambda (v)
-                (make-sized-byte-string v n))))
-
-
 (define-cstruct _foo ([a _int]
-                      [b (_bytes/len 42)]))
+                      [printfoo (_fun _foo -> _void)]))
 
 (define the-lib (ffi-lib the-library-path))
 
 (define print-foo 
-  (get-ffi-obj "printFoo" the-lib
+  (get-ffi-obj "printFooTwice" the-lib
                (_fun _foo -> _void)))
