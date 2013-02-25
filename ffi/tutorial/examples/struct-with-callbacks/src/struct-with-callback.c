@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 struct foo {
   int a;
   void (*printFoo)(struct foo* f);
