@@ -17,10 +17,10 @@ struct foo {
 
 
 (define-cstruct _foo ([a _int]
-                      [printfoo (_fun _foo -> _void)]))
+                      [printfoo (_fun _foo-pointer -> _void)]))
 
 (define the-lib (ffi-lib the-library-path))
 
 (define print-foo-twice 
   (get-ffi-obj "printFooTwice" the-lib
-               (_fun _foo -> _void)))
+               (_fun _foo-pointer -> _void)))
