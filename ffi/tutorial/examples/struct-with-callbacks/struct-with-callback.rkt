@@ -21,6 +21,6 @@ struct foo {
 
 (define the-lib (ffi-lib the-library-path))
 
-(define print-foo 
+(define print-foo-twice 
   (get-ffi-obj "printFooTwice" the-lib
                (_fun _foo -> _void)))
