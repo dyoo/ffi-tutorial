@@ -21,9 +21,8 @@
 ; Make a Scheme string from the C string, and free immediately.
 (define _string/free 
   (make-ctype _pointer
-    (lambda (x) 
-      ;; We don't use this as an input type, so we don't care.
-      x) 
+    ;; We don't use this as an input type, so we don't care.
+    (lambda (x) x)
     (lambda (x)
       (cond 
        [x

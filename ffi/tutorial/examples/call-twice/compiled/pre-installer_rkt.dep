@@ -1,0 +1,1 @@
+("5.3.2" ("8c79fd6bad64b60d256ee09e4a3d27af64d0f5bb" . "6a9a75fec39c1c9fce8485636b2a37f6cab63044") (collects #"racket" #"main.rkt") #"/Users/dyoo/work/ffi-tutorial/ffi/tutorial/utils.rkt" (collects #"racket" #"lang" #"reader.rkt"))
