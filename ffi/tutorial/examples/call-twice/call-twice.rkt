@@ -5,7 +5,7 @@
 
 (provide call-twice)
 
-(define-runtime-path hello-library-path
+(define-runtime-path call-twice-path
   (build-path "lib" "call-twice"))
 
 (define the-lib (ffi-lib call-twice-path))
